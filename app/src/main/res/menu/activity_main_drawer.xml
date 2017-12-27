@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_news"
+            android:icon="@drawable/ic_news"
+            android:iconTint="@color/navItemIconColor"
+            android:title="@string/news" />
+        <item
+            android:id="@+id/nav_source"
+            android:icon="@drawable/ic_source"
+            android:iconTint="@color/navItemIconColor"
+            android:title="@string/source" />
+        <item
+            android:id="@+id/nav_weather"
+            android:icon="@drawable/ic_weather"
+            android:iconTint="@color/navItemIconColor"
+            android:title="@string/weather" />
+        <item
+            android:id="@+id/nav_people"
+            android:icon="@drawable/ic_people"
+            android:iconTint="@color/navItemIconColor"
+            android:title="@string/people" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_profile"
+            android:iconTint="@color/navItemIconColor"
+            android:title="@string/profile" />
+    </group>
+
+    <item
+        android:id="@+id/nav_exit"
+        android:icon="@drawable/ic_exit_to_app"
+        android:iconTint="@color/navItemIconColor"
+        android:title="@string/exit" />
+
+</menu>
