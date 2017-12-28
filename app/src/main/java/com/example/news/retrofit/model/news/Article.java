@@ -1,4 +1,4 @@
-package com.example.news.retrofit.model;
+package com.example.news.retrofit.model.news;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -12,7 +12,7 @@ public class Article {
 
     @SerializedName("source")
     @Expose
-    private Source source;
+    private SimpleSource source;
     @SerializedName("author")
     @Expose
     private String author;
@@ -32,12 +32,12 @@ public class Article {
     @Expose
     private String publishedAt;
 
-    public Source getSource() {
+    public SimpleSource getSource() {
         return source;
     }
 
-    public void setSource(Source source) {
-        this.source = source;
+    public void setSource(SimpleSource simpleSource) {
+        this.source = simpleSource;
     }
 
     public String getAuthor() {

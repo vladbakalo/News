@@ -21,7 +21,7 @@ public class NewsApplication extends Application {
 
         mAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
-                .apiModule(new ApiModule("https://newsapi.org/"))
+                .apiModule(new ApiModule(Constants.NEWS_API_URL))
                 .build();
     }
 

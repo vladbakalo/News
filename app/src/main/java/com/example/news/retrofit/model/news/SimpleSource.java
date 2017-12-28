@@ -1,14 +1,14 @@
-package com.example.news.retrofit.model;
+package com.example.news.retrofit.model.news;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Source model
+ * SimpleSource model
  *
  */
 
-public class Source {
+public class SimpleSource {
 
     @SerializedName("id")
     @Expose

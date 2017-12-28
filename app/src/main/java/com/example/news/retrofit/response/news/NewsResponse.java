@@ -1,5 +1,6 @@
-package com.example.news.retrofit.model;
+package com.example.news.retrofit.response.news;
 
+import com.example.news.retrofit.model.news.Article;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -10,25 +11,14 @@ import java.util.List;
  *
  */
 
-public class NewsResponse {
+public class NewsResponse extends BaseResponse {
 
-    @SerializedName("status")
-    @Expose
-    private String status;
     @SerializedName("totalResults")
     @Expose
     private Integer totalResults;
     @SerializedName("articles")
     @Expose
     private List<Article> articles = null;
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public Integer getTotalResults() {
         return totalResults;

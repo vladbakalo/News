@@ -10,7 +10,7 @@
             android:id="@+id/nav_source"
             android:icon="@drawable/ic_source"
             android:iconTint="@color/navItemIconColor"
-            android:title="@string/source" />
+            android:title="@string/simpleSource" />
         <item
             android:id="@+id/nav_weather"
             android:icon="@drawable/ic_weather"

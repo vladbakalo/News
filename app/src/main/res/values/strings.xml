@@ -3,7 +3,7 @@
 
     <!--Drawer-->
     <string name="news">News</string>
-    <string name="source">Source</string>
+    <string name="simpleSource">Source</string>
     <string name="weather">Weather</string>
     <string name="people">People</string>
     <string name="profile">Profile</string>
@@ -11,4 +11,25 @@
 
     <string name="navigation_drawer_open">@string/app_name</string>
     <string name="navigation_drawer_close">@string/app_name</string>
+
+    Countrieries-->
+    <string name="ukraine">Украина</string>
+    <string name="poland">Польша</string>
+    <string name="germany">Германия</string>
+
+    Cityties-->
+    <string name="kiev">Киев</string>
+    <string name="kharkov">Харьков</string>
+    <string name="dnepr">Днепр</string>
+    <string name="lviv">Львов</string>
+
+    <string name="varshava">Варшава</string>
+    <string name="krakov">Харьков</string>
+    <string name="lodz">Лодзь</string>
+    <string name="poznan">Познань</string>
+
+    <string name="berlin">Берлин</string>
+    <string name="munhen">Мюнхен</string>
+    <string name="keln">Кельн</string>
+    <string name="gamburg">Гамбург</string>
 </resources>
