@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="news_api_key" formatted="false" translatable="false">7b798a8cef30435b95267e6938f20940</string>
+    <string name="weather_api_key" formatted="false" translatable="false">194571ed784ead3560a4bdef3684f652</string>
+
+    <string name="facebook_app_id">894541540728057</string>
+    <string name="fb_login_protocol_scheme">fb894541540728057</string>
+    <string name="github_client_id">cf42daad3f1580f7c56d</string>
 </resources>
