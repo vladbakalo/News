@@ -1,12 +1,17 @@
 package com.example.news.application.enums;
 
+import android.content.Context;
+
 import com.example.news.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Влад on 28.12.2017.
  */
 
-public enum Country {
+public enum ECountry {
     UKRAINE(R.string.ukraine, "ua"),
     POLAND(R.string.poland, "pl"),
     GERMANY(R.string.germany, "de");
@@ -16,7 +21,7 @@ public enum Country {
     //ISO 3166
     private String isoCode;
 
-    Country(int nameResId, String isoCode) {
+    ECountry(int nameResId, String isoCode) {
         this.nameResId = nameResId;
         this.isoCode = isoCode;
     }
@@ -37,9 +42,18 @@ public enum Country {
         this.isoCode = isoCode;
     }
 
+    public static List<String> getCountry(Context context){
+        List<String> countries = new ArrayList<>();
+        for (ECountry country:
+                ECountry.values()) {
+            countries.add(context.getString(country.getNameResId()));
+        }
+        return countries;
+    }
+
     @Override
     public String toString() {
-        return "Country{" +
+        return "ECountry{" +
                 "nameResId=" + nameResId +
                 '}';
     }

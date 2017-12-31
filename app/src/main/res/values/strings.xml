@@ -12,7 +12,7 @@
     <string name="navigation_drawer_open">@string/app_name</string>
     <string name="navigation_drawer_close">@string/app_name</string>
 
-    <!--Countrieries-->
+    <!--Countries-->
     <string name="ukraine">Украина</string>
     <string name="poland">Польша</string>
     <string name="germany">Германия</string>
@@ -45,4 +45,15 @@
     <string name="re_password">Re-Password</string>
     <string name="auth_failed">Authentication failed</string>
     <string name="sign_in_with_github">Sign in with GitHub</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="edit_profile">Edit Profile</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="phone">Phone</string>
+    <string name="choose_date">Choose date</string>
+    <string name="save">Save</string>
+    <string name="country">Country</string>
+    <string name="city">City</string>
+    <string name="b_day">B-Day</string>
 </resources>

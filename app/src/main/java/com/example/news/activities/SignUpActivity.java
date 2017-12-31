@@ -49,7 +49,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this,
-                R.style.Theme_AppCompat_DayNight_DarkActionBar);
+                R.style.Theme_AppCompat_DayNight_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage(getString(R.string.progress_sign_up_text));
     }

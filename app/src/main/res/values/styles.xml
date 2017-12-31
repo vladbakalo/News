@@ -12,17 +12,29 @@
 
     <style name="FullNameText" parent="RobotoMedium">
         <item name="android:textSize">@dimen/full_name_text_size</item>
-        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:ellipsize">end</item>
         <item name="android:maxLines">1</item>
     </style>
 
     <style name="EmailAddressText" parent="RobotoRegular">
         <item name="android:textSize">@dimen/full_name_text_size</item>
-        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:ellipsize">end</item>
         <item name="android:maxLines">1</item>
     </style>
+
+    <style name="LabelText" parent="RobotoRegular">
+        <item name="android:textSize">@dimen/label_text_size</item>
+        <item name="android:paddingLeft">5dp</item>
+    </style>
+
+    <style name="StaticText" parent="RobotoRegular">
+        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:paddingLeft">5dp</item>
+    </style>
+
 
     <style name="DrawerItemText" parent="RobotoMedium">
         <item name="android:textSize">@dimen/full_name_text_size</item>
@@ -44,6 +56,10 @@
 
     <style name="RobotoRegular">
         <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="spinnerStyle"  parent="@android:style/Widget.TextView.SpinnerItem">
+        <item name="android:padding">5sp</item>
     </style>
 
 </resources>

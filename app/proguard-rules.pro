@@ -21,3 +21,6 @@
 #-renamesourcefileattribute SourceFile
 -keepattributes Signature
 -keepattributes *Annotation*
+-keepclassmembers class com.example.news.entity.** {
+  *;
+}

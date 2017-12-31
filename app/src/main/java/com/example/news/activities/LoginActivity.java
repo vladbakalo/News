@@ -129,7 +129,7 @@ public class LoginActivity extends AppCompatActivity implements OnCompleteListen
 
     private void setUpProgressBar() {
         progressDialog = new ProgressDialog(LoginActivity.this,
-                R.style.Theme_AppCompat_DayNight_DarkActionBar);
+                R.style.Theme_AppCompat_DayNight_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage(getString(R.string.progress_login_text));
     }
@@ -242,8 +242,9 @@ public class LoginActivity extends AppCompatActivity implements OnCompleteListen
         progressDialog.dismiss();
         if (firebaseUser != null) {
             Intent intent = new Intent(this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            finish();
         }
     }
     //endregion
