@@ -53,6 +53,7 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PersonVH> 
                 .placeholder(R.drawable.ic_image_load)
                 .error(R.drawable.ic_image_error)
                 .transform(new CircleTransform())
+                .fit()
                 .into(holder.personAvatar);
         holder.personFullName.setText(person.toString());
     }

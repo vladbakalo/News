@@ -15,11 +15,11 @@
         android:layout_marginTop="@dimen/list_item_margin"
         android:layout_marginLeft="@dimen/list_item_margin"
         android:layout_marginRight="@dimen/list_item_margin"
-        android:background="@color/primaryTextColor"/>
+        android:layout_marginBottom="8dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/nav_header_subtitle_height"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginLeft="@dimen/list_item_margin"
         android:layout_marginRight="@dimen/list_item_margin">
@@ -30,7 +30,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            tools:text="@string/app_name"/>
+            tools:text="@string/app_name"
+            android:layout_marginBottom="4dp"/>
 
         <TextView
             style="@style/EmailAddressText"
@@ -38,7 +39,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="asfaffafaffasfsdfsdfsdf"/>
+            android:text="asfaffafaffasfsdfsdfsdf"
+            android:layout_marginBottom="@dimen/list_item_margin"/>
     </LinearLayout>
 
 </LinearLayout>

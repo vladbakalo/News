@@ -12,20 +12,16 @@ import com.example.news.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SourceFragment extends Fragment {
-
-
-    public SourceFragment() {
-        // Required empty public constructor
-    }
-
+public class SourceFragment extends BaseFragment {
+    public static final String TAG = SourceFragment.class.getSimpleName();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_source, container, false);
+
         getActivity().setTitle(R.string.simpleSource);
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_source, container, false);
+        return root;
     }
 
 }

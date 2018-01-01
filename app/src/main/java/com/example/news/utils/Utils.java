@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import java.util.Calendar;
+
 /**
  * Utils
  *
@@ -42,5 +44,8 @@ public class Utils {
         return fragment;
     }
 
+    public static String getReadableDate(Calendar calendar){
+        return String.format("%d/%d/%d", calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.YEAR));
+    }
 
 }

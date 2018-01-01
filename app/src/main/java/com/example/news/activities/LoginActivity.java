@@ -92,11 +92,6 @@ public class LoginActivity extends AppCompatActivity implements OnCompleteListen
         setUpLogicForLoginViaGoogle();
 
         checkIntentForAuth();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUiAfterAuth(currentUser);

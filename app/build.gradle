@@ -36,14 +36,16 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation 'com.google.firebase:firebase-auth:11.6.0'
-    implementation 'com.google.firebase:firebase-database:11.6.0'
-    implementation 'com.android.support:support-v4:26.1.0'
-    compile 'com.google.android.gms:play-services-auth:11.6.0'
-    compile 'com.android.support:appcompat-v7:26.1.0'
+    implementation "com.google.firebase:firebase-auth:$rootProject.ext.firebase_api"
+    implementation "com.google.firebase:firebase-database:$rootProject.ext.firebase_api"
+    implementation "com.android.support:support-v4:$rootProject.ext.support_lib"
+    implementation "com.google.firebase:firebase-storage:$rootProject.ext.firebase_api"
+
+    compile "com.google.android.gms:play-services-auth:$rootProject.ext.firebase_api"
+    compile "com.android.support:appcompat-v7:$rootProject.ext.support_lib"
     // appcompat library
-    compile 'com.android.support:design:26.1.0'
-    compile 'com.android.support:support-v13:26.1.0'
+    compile "com.android.support:design:$rootProject.ext.support_lib"
+    compile "com.android.support:support-v13:$rootProject.ext.support_lib"
     compile 'com.jakewharton:butterknife:8.8.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
@@ -61,16 +63,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }
-
-
-
-
-
-
-
-
-
-
 
 
 apply plugin: 'com.google.gms.google-services'

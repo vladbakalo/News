@@ -13,7 +13,7 @@ public class User {
     private String lastName;
     private int countryId;
     private int cityId;
-    private int    telephone;
+    private String phone;
     private long   birthDay;
     private String photoPath;
 
@@ -23,13 +23,13 @@ public class User {
 
     }
 
-    public User(String uId, String firstName, String lastName, int countryId, int cityId, int telephone, long birthDay, String photoPath, List<Source> newsSources) {
+    public User(String uId, String firstName, String lastName, int countryId, int cityId, String phone, long birthDay, String photoPath, List<Source> newsSources) {
         this.uId = uId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.countryId = countryId;
         this.cityId = cityId;
-        this.telephone = telephone;
+        this.phone = phone;
         this.birthDay = birthDay;
         this.photoPath = photoPath;
         this.newsSources = newsSources;
@@ -75,12 +75,12 @@ public class User {
         this.cityId = cityId;
     }
 
-    public int getTelephone() {
-        return telephone;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setTelephone(int telephone) {
-        this.telephone = telephone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public long getBirthDay() {

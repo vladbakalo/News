@@ -12,18 +12,27 @@ import java.util.List;
  */
 
 public enum ECountry {
-    UKRAINE(R.string.ukraine, "ua"),
-    POLAND(R.string.poland, "pl"),
-    GERMANY(R.string.germany, "de");
+    UKRAINE(1, R.string.ukraine, "ua"),
+    POLAND(2, R.string.poland, "pl"),
+    GERMANY(3, R.string.germany, "de");
 
+    private int id;
     private int nameResId;
-
     //ISO 3166
     private String isoCode;
 
-    ECountry(int nameResId, String isoCode) {
+    ECountry(int id, int nameResId, String isoCode) {
+        this.id = id;
         this.nameResId = nameResId;
         this.isoCode = isoCode;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getNameResId() {
@@ -49,6 +58,15 @@ public enum ECountry {
             countries.add(context.getString(country.getNameResId()));
         }
         return countries;
+    }
+
+    public static ECountry getContryById(int id) {
+        for (ECountry country :
+                ECountry.values()) {
+            if (country.getId() == id)
+                return country;
+        }
+        return null;
     }
 
     @Override

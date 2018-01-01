@@ -1,4 +1,9 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+ext{
+    //dependencies
+    firebase_api = '11.6.0'
+    support_lib = '26.1.0'
+}
 
 buildscript {
     

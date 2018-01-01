@@ -7,107 +7,143 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/input_block_margin_top_bottom"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/list_item_margin"
-        android:paddingRight="@dimen/list_item_margin"
-        android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <!-- First Name Label -->
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_layout_first_name"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="220dp">
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/input_first_name"
+            <ImageView
+                android:id="@+id/iv_person_avatar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_image_load"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_pick_new_image"
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@color/transparent_black">
+
+                <TextView
+                    style="@style/ActionImagePickText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/list_item_margin"
+                    android:text="@string/pick_image"/>
+            </RelativeLayout>
+        </FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/list_item_margin"
+            android:paddingRight="@dimen/list_item_margin"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <!-- First Name Label -->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_first_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/first_name"
-                android:inputType="textCapWords"
-                android:textSize="@dimen/normal_text_size" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_marginTop="8dp"
+                app:errorEnabled="true">
 
-        <!-- Last Name Label -->
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_layout_last_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/input_first_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/first_name"
+                    android:inputType="textCapWords"
+                    android:textSize="@dimen/normal_text_size" />
+            </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/input_last_name"
+            <!-- Last Name Label -->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_last_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/last_name"
-                android:inputType="textCapWords"
-                android:textSize="@dimen/normal_text_size" />
-        </android.support.design.widget.TextInputLayout>
+                app:errorEnabled="true">
 
-        <!-- Phone Label -->
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_layout_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/input_last_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/last_name"
+                    android:inputType="textCapWords"
+                    android:textSize="@dimen/normal_text_size" />
+            </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/input_phone"
+            <!-- Phone Label -->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/phone"
-                android:inputType="phone"
-                android:textSize="@dimen/normal_text_size" />
-        </android.support.design.widget.TextInputLayout>
+                app:errorEnabled="true">
 
-        <!--Countryntry Label -->
-        <TextView
-            style="@style/LabelText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/label_margin_top"
-            android:layout_marginBottom="@dimen/label_margin_bottom"
-            android:text="@string/country" />
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/input_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/phone"
+                    android:inputType="phone"
+                    android:textSize="@dimen/normal_text_size" />
+            </android.support.design.widget.TextInputLayout>
 
-        <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/spinner_country"
-            style="@style/spinnerStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></android.support.v7.widget.AppCompatSpinner>
+            <!--Countryntry Label -->
+            <TextView
+                style="@style/LabelText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/label_margin_top"
+                android:layout_marginBottom="@dimen/label_margin_bottom"
+                android:text="@string/country" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spinner_country"
+                style="@style/spinnerStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></android.support.v7.widget.AppCompatSpinner>
 
 
-        <!--City Label -->
-        <TextView
-            style="@style/LabelText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/label_margin_top"
-            android:layout_marginBottom="@dimen/label_margin_bottom"
-            android:text="@string/city" />
+            <!--City Label -->
+            <TextView
+                style="@style/LabelText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/label_margin_top"
+                android:layout_marginBottom="@dimen/label_margin_bottom"
+                android:text="@string/city" />
 
-        <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/spinner_city"
-            style="@style/spinnerStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></android.support.v7.widget.AppCompatSpinner>
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spinner_city"
+                style="@style/spinnerStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></android.support.v7.widget.AppCompatSpinner>
 
-        <TextView
-            style="@style/LabelText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/label_margin_top"
-            android:layout_marginBottom="@dimen/label_margin_bottom"
-            android:text="@string/b_day" />
+            <TextView
+                style="@style/LabelText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/label_margin_top"
+                android:layout_marginBottom="@dimen/label_margin_bottom"
+                android:text="@string/b_day" />
 
-        <TextView
-            style="@style/StaticText"
-            android:id="@+id/input_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/list_item_margin"
-            android:clickable="true"
-            android:hint="04/02/1998" />
+            <TextView
+                style="@style/StaticText"
+                android:id="@+id/input_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/list_item_margin"
+                android:clickable="true"
+                android:hint="04/02/1998" />
 
+        </LinearLayout>
     </LinearLayout>
+
 
 </android.support.v4.widget.NestedScrollView>

@@ -24,14 +24,23 @@ import android.widget.TextView;
 import com.example.news.R;
 import com.example.news.application.NewsApplication;
 import com.example.news.application.views.RoundedImageView;
+import com.example.news.entity.User;
+import com.example.news.fragments.DetailPersonFragment;
 import com.example.news.fragments.EditProfileFragment;
 import com.example.news.fragments.NewsFragment;
 import com.example.news.fragments.PeopleFragment;
 import com.example.news.fragments.ProfileFragment;
 import com.example.news.fragments.SourceFragment;
 import com.example.news.fragments.WeatherFragment;
+import com.example.news.utils.CircleTransform;
+import com.example.news.utils.DBHelper;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.RequestCreator;
 
 import javax.inject.Inject;
 
@@ -59,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TextView mUserFullName;
 
     private FirebaseAuth mAuth;
+    private User mUser;
+    private DBHelper mDBHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,13 +82,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         setUpDrawer();
         Log.wtf(TAG, "OnCreate Main activity");
-
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        setUpProfileInformation();
+    protected void onResume() {
+        super.onResume();
+        requestUserData();
     }
 
     @Override
@@ -141,11 +151,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = new PeopleFragment();
                 break;
             case R.id.nav_profile:
-                fragment = new ProfileFragment();
+                fragment = new DetailPersonFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString(DetailPersonFragment.B_USER_UID, mAuth.getCurrentUser().getUid());
+                fragment.setArguments(bundle);
                 break;
         }
         if (fragment == null)
             return;
+        invalidateOptionsMenu();
         fragmentManager
                 .beginTransaction()
                 .replace(R.id.container, fragment)
@@ -153,14 +167,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void setUpProfileInformation(){
-//        Picasso.with(this)
-//                .load("https://9to5mac.files.wordpress.com/2017/11/face-id1.jpg?quality=82&strip=all&w=1500")
-//                .placeholder(R.drawable.ic_image_load)
-//                .error(R.drawable.ic_image_error)
-//                .fit()
-//                .into(mUserAvatar);
+
+        Picasso.with(this)
+                .load(mUser.getPhotoPath())
+                .placeholder(R.drawable.ic_image_load)
+                .error(R.drawable.ic_image_error)
+                .transform(new CircleTransform())
+                .fit()
+                .into(mUserAvatar);
         mUserEmail.setText(mAuth.getCurrentUser().getEmail());
-        mUserFullName.setText(mAuth.getCurrentUser().getDisplayName());
+        mUserFullName.setText(mUser.toString());
+    }
+
+    private void requestUserData() {
+
+        mDBHelper = new DBHelper(mAuth.getCurrentUser(), FirebaseDatabase.getInstance().getReference());
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                mUser = user;
+                setUpProfileInformation();
+                mDBHelper.getUserReference().removeEventListener(this);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+            }
+        };
+        mDBHelper.getUserReference().addValueEventListener(postListener);
     }
 
     public static void startMainActivity(Activity activity){

@@ -43,6 +43,10 @@ public class DBHelper {
         return mDatabase.child(USERS_OBJ).child(mUId);
     }
 
+    public DatabaseReference getUserReference(String pUid){
+        return mDatabase.child(USERS_OBJ).child(pUid);
+    }
+
     public DatabaseReference getAllUsers(){
         return mDatabase.child(USERS_OBJ);
     }
