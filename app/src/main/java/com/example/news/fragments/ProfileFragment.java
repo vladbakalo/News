@@ -41,7 +41,7 @@ public class ProfileFragment extends Fragment {
     public void onClickView(View view){
         switch (view.getId()){
             case R.id.btn_edit_profile:
-                ContentActivity.startSavedBundle(getActivity(), SavedBundle.create(EditProfileFragment.class, null), 0);
+                ContentActivity.startSavedBundle(getActivity(), EditProfileFragment.newInstanceSimpleEdit(), 0);
                 break;
         }
     }

@@ -1,5 +1,7 @@
 package com.example.news.activities;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -159,5 +161,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                .into(mUserAvatar);
         mUserEmail.setText(mAuth.getCurrentUser().getEmail());
         mUserFullName.setText(mAuth.getCurrentUser().getDisplayName());
+    }
+
+    public static void startMainActivity(Activity activity){
+        Intent intent = new Intent(activity, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        activity.startActivity(intent);
     }
 }

@@ -23,8 +23,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.news.R;
+import com.example.news.activities.MainActivity;
 import com.example.news.application.enums.ECity;
 import com.example.news.application.enums.ECountry;
+import com.example.news.entity.User;
+import com.example.news.utils.DBHelper;
+import com.example.news.utils.SavedBundle;
 import com.facebook.login.widget.LoginButton;
 
 import java.util.Calendar;
@@ -39,8 +43,16 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EditProfileFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
+public class EditProfileFragment extends BaseFragment implements DatePickerDialog.OnDateSetListener {
     public static final String TAG = EditProfileFragment.class.getSimpleName();
+
+    public static final String TYPE_EDIT = "TYPE_EDIT";
+
+    public enum EditProfileMode {
+        TYPE_COMPLETE_REGISTRATION, TYPE_SIMPLE_EDIT
+    }
+
+    EditProfileMode editProfileMode;
 
     @BindView(R.id.input_first_name)
     TextInputEditText mInputFirstName;
@@ -66,8 +78,16 @@ public class EditProfileFragment extends Fragment implements DatePickerDialog.On
     private Unbinder butterKniefUnbinder;
     private Calendar mBirthDayDate;
 
-    public EditProfileFragment() {
+    public static SavedBundle newInstanceCompleteRegistration(){
+        Bundle bundle = new Bundle();
+        bundle.putInt(TYPE_EDIT, EditProfileMode.TYPE_COMPLETE_REGISTRATION.ordinal());
+        return SavedBundle.create(EditProfileFragment.class, bundle);
+    }
 
+    public static SavedBundle newInstanceSimpleEdit(){
+        Bundle bundle = new Bundle();
+        bundle.putInt(TYPE_EDIT, EditProfileMode.TYPE_SIMPLE_EDIT.ordinal());
+        return SavedBundle.create(EditProfileFragment.class, bundle);
     }
 
     @Override
@@ -85,7 +105,8 @@ public class EditProfileFragment extends Fragment implements DatePickerDialog.On
 
         setUpCountrySpinner();
         setUpCitySpinner();
-        getActivity().setTitle(R.string.edit_profile);
+        setEditProfileType();
+        setUpToolBarTitle();
 
         return root;
     }
@@ -99,7 +120,9 @@ public class EditProfileFragment extends Fragment implements DatePickerDialog.On
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_save:
-
+                if (validate()) {
+                    saveProfile();
+                }
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -145,6 +168,29 @@ public class EditProfileFragment extends Fragment implements DatePickerDialog.On
         mBirthDayDate = calendar;
     }
 
+    private void setEditProfileType(){
+        if (getArguments() != null && getArguments().containsKey(TYPE_EDIT)) {
+            editProfileMode = EditProfileMode.values()[getArguments().getInt(TYPE_EDIT)];
+        } else {
+            editProfileMode = EditProfileMode.TYPE_SIMPLE_EDIT;
+        }
+    }
+
+    private void setUpToolBarTitle(){
+        String str;
+        switch (editProfileMode){
+            case TYPE_SIMPLE_EDIT:
+                str = getString(R.string.edit_profile);
+                break;
+            case TYPE_COMPLETE_REGISTRATION:
+                str = getString(R.string.complete_registration);
+                break;
+            default:
+                str = getString(R.string.edit_profile);
+        }
+        getActivity().setTitle(str);
+    }
+
     private void setUpCountrySpinner(){
         mSpinnerCountry.setAdapter(new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, ECountry.getCountry(getActivity())));
         mSpinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -184,4 +230,35 @@ public class EditProfileFragment extends Fragment implements DatePickerDialog.On
             mInputDate.setText(String.format("%d/%d/%d", date.get(Calendar.DAY_OF_MONTH), date.get(Calendar.MONTH), date.get(Calendar.YEAR)));
         }
     }
+
+    private void saveProfile(){
+        switch (editProfileMode){
+            case TYPE_SIMPLE_EDIT:
+                getDBHelper().updateUser(getUser());
+                getActivity().finish();
+                break;
+            case TYPE_COMPLETE_REGISTRATION:
+                getDBHelper().updateUser(getUser());
+                MainActivity.startMainActivity(getActivity());
+                getActivity().finish();
+                break;
+        }
+    }
+
+    private User getUser(){
+        User user = new User();
+        user.setFirstName(mInputFirstName.getText().toString());
+        user.setLastName(mInputLastName.getText().toString());
+        user.setTelephone(Integer.valueOf(mInputPhone.getText().toString()));
+        user.setBirthDay(mBirthDayDate.getTimeInMillis());
+        user.setCityId(ECity.values()[mSpinnerCity.getSelectedItemPosition()].ordinal());
+        user.setCountryId(ECity.values()[mSpinnerCountry.getSelectedItemPosition()].ordinal());
+        return user;
+    }
+
+    private boolean validate(){
+        return true;
+    }
+
+
 }

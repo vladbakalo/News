@@ -7,4 +7,5 @@
     <color name="primaryTextColor">#6a6e72</color>
     <color name="navItemIconColor">#737373</color>
     <color name="grey">#dfdfdf</color>
+    <color name="grey_icon">#b8b8b8</color>
 </resources>

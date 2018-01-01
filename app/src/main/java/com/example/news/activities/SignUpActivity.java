@@ -1,6 +1,7 @@
 package com.example.news.activities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -12,11 +13,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.news.R;
+import com.example.news.entity.User;
+import com.example.news.fragments.EditProfileFragment;
+import com.example.news.utils.DBHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,6 +47,9 @@ public class SignUpActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
+    private DBHelper mDBHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,10 +57,8 @@ public class SignUpActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mAuth = FirebaseAuth.getInstance();
-        progressDialog = new ProgressDialog(this,
-                R.style.Theme_AppCompat_DayNight_Dialog);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage(getString(R.string.progress_sign_up_text));
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        setUpProgressDialog();
     }
 
     @OnClick({R.id.btn_signup, R.id.link_login})
@@ -61,13 +68,22 @@ public class SignUpActivity extends AppCompatActivity {
                 signUp();
                 break;
             case R.id.link_login:
-                login();
+                finish();
                 break;
         }
     }
 
+    private void setUpProgressDialog(){
+        progressDialog = new ProgressDialog(this,
+                R.style.Theme_AppCompat_DayNight_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage(getString(R.string.progress_sign_up_text));
+    }
+
     private void login(){
-        this.finish();
+        saveUserToDb();
+        ContentActivity.startSavedBundle(this, EditProfileFragment.newInstanceCompleteRegistration(), 0);
+        finish();
     }
 
     private void signUp(){
@@ -103,9 +119,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void processAuth(FirebaseUser firebaseUser){
         progressDialog.dismiss();
-        if (firebaseUser == null){
-
-        } else {
+        if (firebaseUser != null){
             login();
         }
     }
@@ -139,5 +153,11 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         return valid;
+    }
+
+    private void saveUserToDb(){
+        FirebaseUser user = mAuth.getCurrentUser();
+        mDBHelper = new DBHelper(user, mDatabase);
+        mDBHelper.createUser();
     }
 }

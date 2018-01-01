@@ -15,4 +15,9 @@
     <dimen name="login_icon_size">72dp</dimen>
     <dimen name="sign_up_text_size">16sp</dimen>
 
+    <!--People-->
+    <dimen name="list_item_single_line_height">56dp</dimen>
+    <dimen name="list_item_text_padding_left">72dp</dimen>
+    <dimen name="list_item_secondary_size">20dp</dimen>
+    <dimen name="list_item_icon_size">32dp</dimen>
 </resources>
