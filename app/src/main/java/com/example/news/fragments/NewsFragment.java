@@ -41,7 +41,7 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewsFragment extends BaseFragment implements NewsAdapter.OnArticleClickListener {
+public class NewsFragment extends BaseFragment implements NewsAdapter.OnArticleClickListener, SwipeRefreshLayout.OnRefreshListener {
     public static final String TAG = NewsFragment.class.getSimpleName();
 
     private RecyclerView.LayoutManager mLayoutManager;
@@ -71,6 +71,7 @@ public class NewsFragment extends BaseFragment implements NewsAdapter.OnArticleC
         mLayoutManager = new LinearLayoutManager(getActivity());
 
         swipeRefreshLayout = (SwipeRefreshLayout) root;
+        swipeRefreshLayout.setOnRefreshListener(this);
         setUpPeopleRecycler();
         mNewsAdapter = new NewsAdapter(mArticles, getActivity(), this);
         recyclerView.setAdapter(mNewsAdapter);
@@ -126,6 +127,7 @@ public class NewsFragment extends BaseFragment implements NewsAdapter.OnArticleC
                     public void onNext(NewsResponse newsResponse) {
                         mArticles = newsResponse.getArticles();
                         updateList();
+                        swipeRefreshLayout.setRefreshing(false);
                         Log.i(TAG, "News Response Status: " + newsResponse.getStatus());
                         Log.i(TAG, "News Response Data: " + newsResponse.getArticles());
                     }
@@ -133,6 +135,8 @@ public class NewsFragment extends BaseFragment implements NewsAdapter.OnArticleC
                     @Override
                     public void onError(Throwable e) {
                         Log.wtf(TAG, e);
+                        getProgressDialog().dismiss();
+                        swipeRefreshLayout.setRefreshing(false);
                     }
 
                     @Override
@@ -156,5 +160,10 @@ public class NewsFragment extends BaseFragment implements NewsAdapter.OnArticleC
     @Override
     public void onArticleClick(Article article) {
         //ContentActivity.startSavedBundle(getActivity(), DetailArticleFragment.newInstance(article), 0);
+    }
+
+    @Override
+    public void onRefresh() {
+        getNews();
     }
 }
