@@ -64,10 +64,10 @@ public class DetailArticleFragment extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null && getArguments().containsKey(B_ARTICLE)){
+        if (getArguments() != null){
             mArticle = getArguments().getParcelable(B_ARTICLE);
         }
-        if (savedInstanceState != null && savedInstanceState.containsKey(B_ARTICLE)){
+        if (savedInstanceState != null){
             mArticle = savedInstanceState.getParcelable(B_ARTICLE);
         }
     }
@@ -102,7 +102,7 @@ public class DetailArticleFragment extends BaseFragment {
                 .error(R.drawable.ic_image_error)
                 .into(mArticleImage);
         mArticleDescription.setText(mArticle.getDescription());
-        mArticleSource.setText(mArticle.getAuthor());
+        mArticleSource.setText(mArticle.getSource().getName());
         mArticleTime.setText(mArticle.getPublishedAt());
         mArticleTitle.setText(mArticle.getTitle());
 

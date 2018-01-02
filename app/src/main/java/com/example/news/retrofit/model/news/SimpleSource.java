@@ -1,5 +1,8 @@
 package com.example.news.retrofit.model.news;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -8,7 +11,7 @@ import com.google.gson.annotations.SerializedName;
  *
  */
 
-public class SimpleSource {
+public class SimpleSource implements Parcelable {
 
     @SerializedName("id")
     @Expose
@@ -16,6 +19,23 @@ public class SimpleSource {
     @SerializedName("name")
     @Expose
     private String name;
+
+    protected SimpleSource(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+    }
+
+    public static final Creator<SimpleSource> CREATOR = new Creator<SimpleSource>() {
+        @Override
+        public SimpleSource createFromParcel(Parcel in) {
+            return new SimpleSource(in);
+        }
+
+        @Override
+        public SimpleSource[] newArray(int size) {
+            return new SimpleSource[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -33,4 +53,14 @@ public class SimpleSource {
         this.name = name;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+    }
 }

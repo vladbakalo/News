@@ -6,7 +6,9 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Article model
@@ -101,6 +103,7 @@ public class Article implements Parcelable {
     public Article(){}
 
     public Article(Parcel in) {
+        source = in.readParcelable(SimpleSource.class.getClassLoader());
         author = in.readString();
         title = in.readString();
         description = in.readString();
@@ -128,6 +131,7 @@ public class Article implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(source, flags);
         dest.writeString(author);
         dest.writeString(title);
         dest.writeString(description);
