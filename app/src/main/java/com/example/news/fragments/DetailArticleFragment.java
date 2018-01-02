@@ -64,10 +64,10 @@ public class DetailArticleFragment extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null){
+        if (getArguments() != null && getArguments().containsKey(B_ARTICLE)){
             mArticle = getArguments().getParcelable(B_ARTICLE);
         }
-        if (savedInstanceState != null){
+        if (savedInstanceState != null && savedInstanceState.containsKey(B_ARTICLE)){
             mArticle = savedInstanceState.getParcelable(B_ARTICLE);
         }
     }
