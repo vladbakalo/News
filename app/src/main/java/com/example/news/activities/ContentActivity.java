@@ -68,6 +68,7 @@ public class ContentActivity extends AppCompatActivity {
     public static void startSavedBundle(Activity pActivity, SavedBundle pSavedBundle, int pFlags) {
         Intent intent = new Intent(pActivity, ContentActivity.class);
         intent.setFlags(pFlags);
+        intent.setExtrasClassLoader(ClassLoader.getSystemClassLoader());
         pSavedBundle.store(intent);
         pActivity.startActivity(intent);
 

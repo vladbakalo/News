@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="asfaffafaffasfsdfsdfsdf"
+            tools:text="asfaffafaffasfsdfsdfsdf"
             android:layout_marginBottom="@dimen/list_item_margin"/>
     </LinearLayout>
 

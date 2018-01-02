@@ -92,6 +92,11 @@ public class LoginActivity extends AppCompatActivity implements OnCompleteListen
         setUpLogicForLoginViaGoogle();
 
         checkIntentForAuth();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUiAfterAuth(currentUser);
@@ -152,7 +157,6 @@ public class LoginActivity extends AppCompatActivity implements OnCompleteListen
                 new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
-                        Toast.makeText(LoginActivity.this, loginResult.getAccessToken().getUserId(), Toast.LENGTH_SHORT).show();
                         firebaseAuthWithFaceBook(loginResult.getAccessToken());
                     }
 
@@ -242,9 +246,11 @@ public class LoginActivity extends AppCompatActivity implements OnCompleteListen
 
     //region PROCESS-AUTH
     private void updateUiAfterAuth(FirebaseUser firebaseUser) {
-        progressDialog.dismiss();
         if (firebaseUser != null) {
+            progressDialog.show();
             checkIfCompleteRegistration();
+        } else {
+            progressDialog.dismiss();
         }
     }
     //endregion
@@ -307,11 +313,17 @@ public class LoginActivity extends AppCompatActivity implements OnCompleteListen
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the UI
+                progressDialog.dismiss();
                 User user = dataSnapshot.getValue(User.class);
-                if (TextUtils.isEmpty(user.getLastName()) || TextUtils.isEmpty(user.getFirstName()) ){
+                if (user == null){
+                    saveUserToDb();
                     ContentActivity.startSavedBundle(LoginActivity.this, EditProfileFragment.newInstanceCompleteRegistration(), 0);
                 } else {
-                    goToMain();
+                    if (TextUtils.isEmpty(user.getLastName()) || TextUtils.isEmpty(user.getFirstName())) {
+                        ContentActivity.startSavedBundle(LoginActivity.this, EditProfileFragment.newInstanceCompleteRegistration(), 0);
+                    } else {
+                        goToMain();
+                    }
                 }
                 mDBHelper.getUserReference().removeEventListener(this);
             }
@@ -329,5 +341,12 @@ public class LoginActivity extends AppCompatActivity implements OnCompleteListen
     private void goToMain(){
         MainActivity.startMainActivity(this);
         finish();
+    }
+
+    private void saveUserToDb(){
+        FirebaseUser user = mAuth.getCurrentUser();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        DBHelper mDBHelper = new DBHelper(user, mDatabase);
+        mDBHelper.createUser();
     }
 }

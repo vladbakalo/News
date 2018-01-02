@@ -41,6 +41,7 @@ dependencies {
     implementation "com.android.support:support-v4:$rootProject.ext.support_lib"
     implementation "com.google.firebase:firebase-storage:$rootProject.ext.firebase_api"
 
+    implementation 'com.android.support:support-v4:26.1.0'
     compile "com.google.android.gms:play-services-auth:$rootProject.ext.firebase_api"
     compile "com.android.support:appcompat-v7:$rootProject.ext.support_lib"
     // appcompat library
@@ -50,6 +51,7 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'io.reactivex.rxjava2:rxjava:2.1.7'
+    compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
     compile 'com.google.dagger:dagger-android:2.11'
     compile 'com.google.dagger:dagger-android-support:2.11'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
@@ -63,6 +65,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }
+
 
 
 apply plugin: 'com.google.gms.google-services'

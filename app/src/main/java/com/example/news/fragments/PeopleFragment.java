@@ -23,6 +23,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import retrofit2.Retrofit;
+
 /**
  * A simple {@link Fragment} subclass.
  */

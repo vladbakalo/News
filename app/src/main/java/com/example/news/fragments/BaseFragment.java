@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import com.example.news.R;
+import com.example.news.application.NewsApplication;
 import com.example.news.utils.DBHelper;
 import com.example.news.utils.StorageHelper;
 import com.google.firebase.auth.FirebaseAuth;
@@ -14,6 +15,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import javax.inject.Inject;
+
+import retrofit2.Retrofit;
 
 /**
  * Created by Влад on 31.12.2017.
@@ -30,6 +35,9 @@ public class BaseFragment extends Fragment {
 
     private ProgressDialog progressDialog;
 
+    @Inject
+    Retrofit mRetrofit;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
@@ -42,6 +50,7 @@ public class BaseFragment extends Fragment {
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        ((NewsApplication) getActivity().getApplication()).getNetComponent().inject(this);
         setUpProgressDialog(getActivity());
         super.onActivityCreated(savedInstanceState);
     }

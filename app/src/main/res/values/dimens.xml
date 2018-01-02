@@ -3,6 +3,7 @@
     <dimen name="full_name_text_size">14sp</dimen>
     <dimen name="normal_text_size">16sp</dimen>
     <dimen name="label_text_size">12sp</dimen>
+    <dimen name="small_text_size">12sp</dimen>
     <dimen name="big_text_size">18sp</dimen>
     <dimen name="dialog_text_size">18sp</dimen>
     <dimen name="sign_up_text_size">16sp</dimen>
@@ -24,4 +25,9 @@
     <dimen name="list_item_text_padding_left">72dp</dimen>
     <dimen name="list_item_secondary_size">20dp</dimen>
     <dimen name="list_item_icon_size">32dp</dimen>
+
+    <!--News-->
+    <dimen name="list_item_article_text_margin_top">2dp</dimen>
+    <dimen name="list_item_article_height">120dp</dimen>
+    <dimen name="list_item_article_image_width">200dp</dimen>
 </resources>

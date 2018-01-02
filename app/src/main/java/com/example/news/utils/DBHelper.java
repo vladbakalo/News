@@ -2,6 +2,7 @@ package com.example.news.utils;
 
 import android.util.Log;
 
+import com.example.news.entity.Source;
 import com.example.news.entity.User;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +31,7 @@ public class DBHelper {
     public void createUser(){
         User userEntity = new User();
         userEntity.setUId(mUId);
+        userEntity.setNewsSources(Source.getDefault());
         mDatabase.child(USERS_OBJ).child(mUId).setValue(userEntity);
 
         Log.wtf(TAG, "User created in DataBase with uId : " + mUId);

@@ -1,35 +1,40 @@
 package com.example.news.retrofit.model.news;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 /**
  * Article model
  *
  */
 
-public class Article {
+public class Article implements Parcelable {
 
     @SerializedName("source")
-    @Expose
+
     private SimpleSource source;
     @SerializedName("author")
-    @Expose
+
     private String author;
     @SerializedName("title")
-    @Expose
+
     private String title;
     @SerializedName("description")
-    @Expose
+
     private String description;
     @SerializedName("url")
-    @Expose
+
     private String url;
     @SerializedName("urlToImage")
-    @Expose
+
     private String urlToImage;
     @SerializedName("publishedAt")
-    @Expose
+
     private String publishedAt;
 
     public SimpleSource getSource() {
@@ -88,4 +93,46 @@ public class Article {
         this.publishedAt = publishedAt;
     }
 
+    @Override
+    public String toString() {
+        return getTitle();
+    }
+
+    public Article(){}
+
+    public Article(Parcel in) {
+        author = in.readString();
+        title = in.readString();
+        description = in.readString();
+        url = in.readString();
+        urlToImage = in.readString();
+        publishedAt = in.readString();
+    }
+
+    public static final Creator<Article> CREATOR = new Creator<Article>() {
+        @Override
+        public Article createFromParcel(Parcel in) {
+            return new Article(in);
+        }
+
+        @Override
+        public Article[] newArray(int size) {
+            return new Article[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(author);
+        dest.writeString(title);
+        dest.writeString(description);
+        dest.writeString(url);
+        dest.writeString(urlToImage);
+        dest.writeString(publishedAt);
+    }
 }

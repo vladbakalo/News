@@ -31,6 +31,8 @@ public class Source {
     @Expose
     private String country;
 
+    private boolean isChecked;
+
     public String getId() {
         return id;
     }
@@ -87,4 +89,16 @@ public class Source {
         this.country = country;
     }
 
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
+
+    @Override
+    public String toString() {
+        return name + " " + id;
+    }
 }

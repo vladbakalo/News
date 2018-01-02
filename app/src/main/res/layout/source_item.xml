@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/list_item_single_line_height"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:clickable="true">
+
+    <TextView
+        android:id="@+id/tv_source_name"
+        style="@style/PersonFullNameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/list_item_margin"
+        android:layout_toLeftOf="@+id/iv_source_switch"
+        tools:text="afsdfasfasffgfgfgfgfgasf"/>
+
+    <Switch
+        android:id="@+id/iv_source_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/list_item_secondary_size"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/list_item_margin"
+        android:layout_marginRight="@dimen/list_item_margin" />
+
+</RelativeLayout>
